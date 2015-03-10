@@ -46,6 +46,8 @@ to
 OR
 
 You can use helper.js and can do something like this
+```
+<script type="text/javascript" src="../public/helper.js"></script>
 <script type="text/javascript">
 
  $(function(){
@@ -65,7 +67,7 @@ You can use helper.js and can do something like this
     });
 
 </script>
-
+```
 You can find a simple example in example/form.html
 
 ## Usage
