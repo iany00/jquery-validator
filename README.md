@@ -43,6 +43,31 @@ to
     'Form' => 'Jquery_Validator\\Form',
 ```
 
+OR
+
+You can use helper.js and can do something like this
+<script type="text/javascript">
+
+ $(function(){
+        // We can extend the validator helper and call it as many as you want
+        var formValidate           = $.extend(true, {}, ValidatorWithMessages);
+        formValidate.rules         = laravelRules;
+        formValidate.messages      = laravelMessages;
+        formValidate.URL           = ""; // if URL is empty it will take the action url
+        formValidate.formId        = "#contact_form";
+        // Use default submit action or overwrite the method
+        formValidate.formSubmit = function() // Overwrite
+        {
+            //...
+            alert('Contact form sent');
+        };
+        formValidate.init();
+    });
+
+</script>
+
+You can find a simple example in example/form.html
+
 ## Usage
 
 You can probably guess that **jquery-validator** depends on jQuery, so at some point, you'll do something like this:

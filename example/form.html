@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="../public/helper.js"></script>
+    <script type="text/javascript" src="../public/validator.js"></script>
+    <style>
+        .error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<form id="contact_form" action="#" method="POST" enctype="multipart/form-data">
+	<div class="row">
+		<label for="name">Your name:</label><br />
+		<input id="name" class="input" name="name" type="text" value="" size="30" /><br />
+	</div>
+	<div class="row">
+		<label for="email">Your email:</label><br />
+		<input id="email" class="input" name="email" type="text" value="" size="30" /><br />
+	</div>
+    <div class="row">
+		<label>Dummy:</label><br />
+		<input id="dummy" name="dummy" class="input" type="text" value="" size="30" />
+        <br />
+	</div>
+	<div class="row">
+		<label for="message">Your message:</label><br />
+		<textarea id="message" class="input" name="message" rows="7" cols="30"></textarea><br />
+	</div>
+	<input id="submit_button" type="submit" value="Send email" />
+    <div class="row" id="errorsHolder">
+    </div>
+</form>
+</body>
+</html>
+<script type="text/javascript">
+    // Get laravel rules and messages
+    // e.g
+    var laravelRules = '{'+
+        '"name"   : "required|alpha",'+
+        '"email"  : "required",'+
+        '"dummy"  : "required|numeric|max:10|min:1",'+
+        '"message": "required|max:50"'+
+    '}';
+    var laravelMessages = '{'+
+        '"name.required"   : "Name is required.",'+
+        '"name.alpha"      : "Name should be only alpha.",'+
+        '"email.required"  : "Email is required.",'+
+        '"dummy.required"  : "Dummy is required.",'+
+        '"dummy.max:10"    : "Dummy Maxim allowed is 10.",'+
+        '"dummy.min:1"     : "Dummy Minimum allowed is 1.",'+
+        '"dummy.numeric"   : "Dummy is only numeric.",'+
+        '"message.required": "Message is required.",'+
+        '"message.max:50" : " Message maxim allowed is 50."'+
+    '}';
+    $(function(){
+        // We can extend the validator helper and call it as many as you want
+        var formValidate           = $.extend(true, {}, ValidatorWithMessages);
+        formValidate.rules         = laravelRules;
+        formValidate.messages      = laravelMessages;
+        formValidate.URL           = ""; // if URL is empty it will take the action url
+        formValidate.formId        = "#contact_form";
+        // Use default submit action or overwrite the method
+        formValidate.formSubmit = function() // Overwrite
+        {
+            //...
+            alert('Contact form sent');
+        };
+        formValidate.init();
+    });
+</script>

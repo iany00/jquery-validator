@@ -8,7 +8,7 @@
 			validationAttribute     : 'validations',
 			preventDefault          : false,
 			preventDefaultIfInvalid : false,
-			callback                : function (elem, valid) {
+			callback                : function (elem, valid, rule) {
 				//
 			},
 			done                    : function (valid) {
